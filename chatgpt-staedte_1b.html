@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktive Tabelle</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid black; padding: 5px; text-align: center; }
+        .dark-green { background-color: darkgreen; color: white; }
+        .clickable { cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <table id="eventTable">
+        <tr>
+            <th>Redaktion</th>
+            <th>Raus</th>
+            <th>Vorbau</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>Fenster</th>
+            <th>Umland</th>
+        </tr>
+        <!-- Weitere Zeilen werden per JavaScript erzeugt -->
+    </table>
+
+    <script>
+        const table = document.getElementById('eventTable');
+        const areas = ['Moers', 'Rheinberg', 'Dinslaken', 'Wesel', 'Issel'];
+        
+        function toggleDarkGreen(event) {
+            event.target.classList.toggle('dark-green');
+        }
+        
+        function handleNVclick(event) {
+            let cell = event.target;
+            let isGreen = cell.classList.contains('dark-green');
+            if (cell.textContent === 'NV') {
+                cell.textContent = '';
+                cell.classList.add('dark-green');
+            } else if (isGreen) {
+                cell.classList.remove('dark-green');
+                cell.textContent = '-';
+            } else {
+                cell.textContent = 'NV';
+            }
+        }
+
+        // Hinzufügen der weiteren Zeilen
+        areas.forEach(area => {
+            const row = table.insertRow();
+            row.insertCell().textContent = area;
+
+            for (let i = 0; i < 12; i++) {
+                const cell = row.insertCell();
+                cell.textContent = '-';
+                cell.classList.add("clickable"); // Alle Zellen klickbar machen
+
+                // Definiere die Klick-Events für alle anderen Zeilen außer "Rheinberg"
+                if (area !== 'Rheinberg') {
+                    if (i === 0) {
+                        cell.addEventListener('click', toggleDarkGreen);
+                    } else if (i >= 2 && i <= 4) {
+                        // Klick-Event a) für "1"-"4", "Fenster" und "Umland"
+                        cell.addEventListener('click', toggleDarkGreen);
+                    } else if (i === 5) {
+                        // Klick-Event d) für "5"
+                        cell.addEventListener('click', handleNVclick);
+                    } else if (i === 10 || i === 11) {
+                        // Klick-Event a) für "Fenster" und "Umland"
+                        cell.addEventListener('click', toggleDarkGreen);
+                    }
+                    
+                    // Für die erste und zweite Spalte (Raus und Vorbau) sind Events
+                    // für alle Zeilen identisch
+                    if (i === 1) {
+                        cell.addEventListener('click', function() {
+                            this.textContent = (this.textContent === '-') ? 'OK' : '-';
+                        });
+                    }
+                } else {
+                    // Spezifische Klick-Events für "Rheinberg"
+                    if (i >= 2 && i <= 5) {
+                        cell.addEventListener('click', toggleDarkGreen);
+                    } else if (i === 6 || i === 7) {
+                        cell.addEventListener('click', handleNVclick);
+                    } else if (i === 10 || i === 11) {
+                        cell.addEventListener('click', toggleDarkGreen);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
