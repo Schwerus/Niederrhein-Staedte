@@ -65,7 +65,7 @@
                 cell.classList.add("clickable"); // Alle Zellen klickbar machen
 
                 // Definiere die Klick-Events f�r alle anderen Zeilen au�er "Rheinberg"
-                if (area === 'Rheinberg') {
+                if (area === 'Rheinberg'|| area === 'Dinslaken' || area === 'Wesel') {
                     if (i === 0) {
                         cell.addEventListener('click', toggleDarkGreen);
                     } else if (i >= 2 && i <= 5) {
