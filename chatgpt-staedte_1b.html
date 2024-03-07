@@ -54,7 +54,7 @@
             }
         }
 
-        // Hinzufügen der weiteren Zeilen
+        // Hinzufï¿½gen der weiteren Zeilen
         areas.forEach(area => {
             const row = table.insertRow();
             row.insertCell().textContent = area;
@@ -64,30 +64,30 @@
                 cell.textContent = '-';
                 cell.classList.add("clickable"); // Alle Zellen klickbar machen
 
-                // Definiere die Klick-Events für alle anderen Zeilen außer "Rheinberg"
-                if (area !== 'Rheinberg') {
+                // Definiere die Klick-Events fï¿½r alle anderen Zeilen auï¿½er "Rheinberg"
+                if (area === 'Rheinberg') {
                     if (i === 0) {
                         cell.addEventListener('click', toggleDarkGreen);
-                    } else if (i >= 2 && i <= 4) {
-                        // Klick-Event a) für "1"-"4", "Fenster" und "Umland"
+                    } else if (i >= 2 && i <= 5) {
+                        // Klick-Event a) fï¿½r "1"-"4", "Fenster" und "Umland"
                         cell.addEventListener('click', toggleDarkGreen);
-                    } else if (i === 5) {
-                        // Klick-Event d) für "5"
+                    } else if (i === 6 || i === 7)  {
+                        // Klick-Event d) fï¿½r "5"
                         cell.addEventListener('click', handleNVclick);
                     } else if (i === 10 || i === 11) {
-                        // Klick-Event a) für "Fenster" und "Umland"
+                        // Klick-Event a) fï¿½r "Fenster" und "Umland"
                         cell.addEventListener('click', toggleDarkGreen);
                     }
                     
-                    // Für die erste und zweite Spalte (Raus und Vorbau) sind Events
-                    // für alle Zeilen identisch
+                    // Fï¿½r die erste und zweite Spalte (Raus und Vorbau) sind Events
+                    // fï¿½r alle Zeilen identisch
                     if (i === 1) {
                         cell.addEventListener('click', function() {
                             this.textContent = (this.textContent === '-') ? 'OK' : '-';
                         });
                     }
                 } else {
-                    // Spezifische Klick-Events für "Rheinberg"
+                    // Spezifische Klick-Events fï¿½r "Rheinberg"
                     if (i >= 2 && i <= 5) {
                         cell.addEventListener('click', toggleDarkGreen);
                     } else if (i === 6 || i === 7) {
