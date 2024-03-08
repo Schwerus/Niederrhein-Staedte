@@ -48,7 +48,7 @@
                 cell.classList.add('dark-green');
             } else if (isGreen) {
                 cell.classList.remove('dark-green');
-                cell.textContent = '-';
+                cell.textContent = '';
             } else {
                 cell.textContent = 'NV';
             }
@@ -61,16 +61,15 @@
 
             for (let i = 0; i < 12; i++) {
                 const cell = row.insertCell();
-                cell.textContent = '-';
+                cell.textContent = '';
                 cell.classList.add("clickable"); // Alle Zellen klickbar machen
 
                 // Definiere die Klick-Events f�r alle anderen Zeilen au�er "Rheinberg"
-                if (area === 'Rheinberg'|| area === 'Dinslaken' || area === 'Wesel') {
+                if (area === 'Moers'|| area === 'Rheinberg'|| area === 'Dinslaken' || area === 'Wesel') {
                     if (i === 0) {
                         cell.addEventListener('click', toggleDarkGreen);
-                    } else if (i >= 2 && i <= 5) {
-                        // Klick-Event a) f�r "1"-"4", "Fenster" und "Umland"
-                        cell.addEventListener('click', toggleDarkGreen);
+                        cell.textContent = '';
+
                     } else if (i === 6 || i === 7)  {
                         // Klick-Event d) f�r "5"
                         cell.addEventListener('click', handleNVclick);
@@ -83,19 +82,52 @@
                     // f�r alle Zeilen identisch
                     if (i === 1) {
                         cell.addEventListener('click', function() {
-                            this.textContent = (this.textContent === '-') ? 'OK' : '-';
+                            this.textContent = (this.textContent === '') ? 'OK' : '-';
                         });
                     }
-                } else {
-                    // Spezifische Klick-Events f�r "Rheinberg"
+                        
+                    
+                } 
+                
+                if (area === 'Issel') {
+                    if (i === 0) {
+                        cell.addEventListener('click', toggleDarkGreen);
+                    } else if (i >= 2 && i <= 7) {
+                        // Klick-Event a) f�r "1"-"4", "Fenster" und "Umland"
+                        cell.addEventListener('click', toggleDarkGreen);
+                        
+
+                    } else if (i === 8 || i === 9)  {
+                        // Klick-Event d) f�r "5"
+                        cell.addEventListener('click', handleNVclick);
+                    } else if (i === 10 ) {
+                        // Klick-Event a) f�r "Fenster" und "Umland"
+                        cell.addEventListener('click', toggleDarkGreen);
+                    }
+                    
+                    // F�r die erste und zweite Spalte (Raus und Vorbau) sind Events
+                    // f�r alle Zeilen identisch
+                    if (i === 1) {
+                        cell.addEventListener('click', function() {
+                            this.textContent = 'OK';
+                        });
+                    }
+                        
+                    
+                } 
+
+                else {
+                    // Generell
                     if (i >= 2 && i <= 5) {
                         cell.addEventListener('click', toggleDarkGreen);
+                        
                     } else if (i === 6 || i === 7) {
                         cell.addEventListener('click', handleNVclick);
                     } else if (i === 10 || i === 11) {
                         cell.addEventListener('click', toggleDarkGreen);
                     }
                 }
+                
             }
         });
     </script>
