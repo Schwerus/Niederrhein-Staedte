@@ -11,6 +11,7 @@
         table { width: 100%; border-collapse: collapse; }
         th, td { border: 1px solid black; padding: 5px; text-align: center; }
         .dark-green { background-color: darkgreen; color: white; }
+        .violet { background-color: rgb(226, 29, 144); color: white; }
         .clickable { cursor: pointer; }
     </style>
     <style>
@@ -67,16 +68,20 @@
             event.target.classList.toggle('dark-green');
         }
         
+        
         function handleNVclick(event) {
             let cell = event.target;
             let isGreen = cell.classList.contains('dark-green');
+            let isViolet = cell.classList.contains('red');
             if (cell.textContent === 'NV') {
                 cell.textContent = '';
                 cell.classList.add('dark-green');
             } else if (isGreen) {
                 cell.classList.remove('dark-green');
+                cell.classList.add('violet');
                 cell.textContent = '';
             } else {
+                cell.classList.remove('violet');
                 cell.textContent = 'NV';
             }
         }
