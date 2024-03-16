@@ -67,7 +67,25 @@
         function toggleDarkGreen(event) {
             event.target.classList.toggle('dark-green');
         }
-        
+
+// Änderungen für die ersten Seiten, die fix in der Ausgabe sind
+
+        function toggleDarkGreen(event) {
+            let cell = event.target;
+            let isGreen = cell.classList.contains('dark-green');
+            let isViolet = cell.classList.contains('red');
+            if (cell.textContent === '-' || cell.textContent ==='NV') {
+                cell.textContent = '';
+                cell.classList.add('dark-green');
+            } else if (isGreen) {
+                cell.classList.remove('dark-green');
+                cell.classList.add('violet');
+                cell.textContent = '';
+            } else {
+                cell.classList.remove('violet');
+                cell.textContent = 'NV';
+            }
+        }        
         
         function handleNVclick(event) {
             let cell = event.target;
@@ -93,7 +111,7 @@
 
             for (let i = 0; i < 12; i++) {
                 const cell = row.insertCell();
-                cell.textContent = '';
+                cell.textContent = '-';
                 cell.classList.add("clickable"); // Alle Zellen klickbar machen
 
                 // Definiere die Klick-Events f�r alle anderen Zeilen au�er "Rheinberg"
