@@ -60,16 +60,29 @@
         <!-- Weitere Zeilen werden per JavaScript erzeugt -->
     </table>
 </center>
+
+
     <script>
         const table = document.getElementById('eventTable');
         const areas = ['Moers', 'Rheinberg', 'Dinslaken', 'Wesel', 'Issel', 'Düsseldorf', 'DDorf Sport'];
+
         
-        function toggleDarkGreen(event) {
-            event.target.classList.toggle('dark-green');
-        }
+
+function toggleDarkGreen(event) {
+    const colors = ['yellow', 'red', 'green'];
+    const texts = ['ABC', 'DEF', 'GHI'];
+    const target = event.target;
+    const currentIndex = colors.indexOf(target.style.backgroundColor);
+    const nextIndex = (currentIndex + 1) % colors.length;
+
+    target.style.backgroundColor = colors[nextIndex];
+    target.textContent = texts[nextIndex];
+}
+
+
 
 // Änderungen für die ersten Seiten, die fix in der Ausgabe sind
-
+/*
         function toggleDarkGreen(event) {
             let cell = event.target;
             let isGreen = cell.classList.contains('dark-green');
@@ -86,7 +99,7 @@
                 cell.textContent = 'NV';
             }
         }        
-        
+ */       
         function handleNVclick(event) {
             let cell = event.target;
             let isGreen = cell.classList.contains('dark-green');
