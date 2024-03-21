@@ -79,6 +79,33 @@ function toggleDarkGreen(event) {
     target.textContent = texts[nextIndex];
 }
 
+function toggleGreenWhite(event) {
+    const colors = ['green','white'];
+    const texts = ['ABC', 'DEF', 'GHI'];
+    const target = event.target;
+    const currentIndex = colors.indexOf(target.style.backgroundColor);
+    const nextIndex = (currentIndex + 1) % colors.length;
+
+    console.log("Aktuelle Farbe:", colors[currentIndex]);
+
+    target.style.backgroundColor = colors[nextIndex];
+
+    target.textContent = texts[nextIndex];
+}
+
+
+function toggleVorbau(event) {
+    const texts = ['AAA', 'BBB', 'CCC'];
+    const target = event.target;
+    const currentIndex = texts.indexOf(target.textContent);
+    const nextIndex = (currentIndex + 1) % texts.length;
+
+    console.log("Aktueller Wert:", texts[currentIndex]);
+
+    //target.style.backgroundColor = colors[nextIndex];
+
+    target.textContent = texts[nextIndex];
+}
 
 
 // Änderungen für die ersten Seiten, die fix in der Ausgabe sind
@@ -124,15 +151,19 @@ function toggleDarkGreen(event) {
 
             for (let i = 0; i < 12; i++) {
                 const cell = row.insertCell();
-                cell.textContent = '-';
+                cell.textContent = '';
                 cell.classList.add("clickable"); // Alle Zellen klickbar machen
 
                 // Definiere die Klick-Events f�r alle anderen Zeilen au�er "Rheinberg"
                 
                     if (i === 0) {
-                        cell.addEventListener('click', toggleDarkGreen);
+                        cell.addEventListener('click', toggleGreenWhite);
                         cell.textContent = '';
 
+                    } else if (i === 1)  {
+                        cell.addEventListener('click', toggleVorbau);
+                        
+                        
                     } else if (i === 6 || i === 7)  {
                         // Klick-Event d) f�r "5"
                         cell.addEventListener('click', handleNVclick);
@@ -143,12 +174,13 @@ function toggleDarkGreen(event) {
                     
                     // F�r die erste und zweite Spalte (Raus und Vorbau) sind Events
                     // f�r alle Zeilen identisch
+                    /*
                     if (i === 1) {
                         cell.addEventListener('click', function() {
                             this.textContent = (this.textContent === '') ? 'OK' : '-';
                         });
                     }
-                        
+                    */    
                     
                  
                 
