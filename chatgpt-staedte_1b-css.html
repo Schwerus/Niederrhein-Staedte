@@ -11,7 +11,7 @@
         table { width: 100%; border-collapse: collapse; }
         th, td { border: 1px solid black; padding: 5px; text-align: center; }
         .dark-green { background-color: darkgreen; color: white; }
-        .violet { background-color: rgb(226, 29, 144); color: white; }
+        .violet { background-color: #ee82ee; color: white; }
         .clickable { cursor: pointer; }
     </style>
     <style>
@@ -105,26 +105,7 @@ function toggleVorbau(event) {
     target.textContent = texts[nextIndex];
 }
 
-
-// Änderungen für die ersten Seiten, die fix in der Ausgabe sind
-/*
-        function toggleDarkGreen(event) {
-            let cell = event.target;
-            let isGreen = cell.classList.contains('dark-green');
-            let isViolet = cell.classList.contains('red');
-            if (cell.textContent === '-' || cell.textContent ==='NV') {
-                cell.textContent = '';
-                cell.classList.add('dark-green');
-            } else if (isGreen) {
-                cell.classList.remove('dark-green');
-                cell.classList.add('violet');
-                cell.textContent = '';
-            } else {
-                cell.classList.remove('violet');
-                cell.textContent = 'NV';
-            }
-        }        
- */       
+    
         function handleNVclick(event) {
             let cell = event.target;
             let isGreen = cell.classList.contains('dark-green');
@@ -163,6 +144,8 @@ function toggleVorbau(event) {
                     } else if (i === 1 || i === 2)  {
                         cell.addEventListener('click', toggleVorbau);
                         
+                    }else if (i >= 3 && i <= 6) {
+                        cell.addEventListener('click', toggleDarkGreen);
                         
                     } else if (i === 7 || i === 8)  {
                         // Klick-Event d) f�r "5"
@@ -172,30 +155,23 @@ function toggleVorbau(event) {
                         cell.addEventListener('click', toggleDarkGreen);
                     }
                     
-                    // F�r die erste und zweite Spalte (Raus und Vorbau) sind Events
-                    // f�r alle Zeilen identisch
-                    /*
-                    if (i === 1) {
-                        cell.addEventListener('click', function() {
-                            this.textContent = (this.textContent === '') ? 'OK' : '-';
-                        });
-                    }
-                    */    
-                    
                  
                 
                 if (area === 'Issel') {
                     if (i === 0) {
-                        cell.addEventListener('click', toggleDarkGreen);
-                    } else if (i >= 2 && i <= 7) {
+                        cell.addEventListener('click', toggleGreenWhite);
+                        cell.textContent = '';
+                    } else if (i === 1 || i === 2)  {
+                        cell.addEventListener('click', toggleVorbau);
+                        
+                    }else if (i <= 6) {
                         // Klick-Event a) f�r "1"-"4", "Fenster" und "Umland"
                         cell.addEventListener('click', toggleDarkGreen);
-                        
-
-                    } else if (i === 8 || i === 9)  {
+                    
+                    } else if (i === 9 || i === 10)  {
                         // Klick-Event d) f�r "5"
                         cell.addEventListener('click', handleNVclick);
-                    } else if (i === 10 ) {
+                    } else if (i === 11 ) {
                         // Klick-Event a) f�r "Fenster" und "Umland"
                         cell.addEventListener('click', toggleDarkGreen);
                     }
@@ -207,12 +183,7 @@ function toggleVorbau(event) {
 
                 else {
                     // Generell
-                    if (i >= 3 && i <= 6) {
-                        cell.addEventListener('click', toggleDarkGreen);
-                        
-                    } else if (i === 7 || i === 8) {
-                        cell.addEventListener('click', handleNVclick);
-                    } else if (i === 11 || i === 12) {
+                    if (i === 11 || i === 12) {
                         cell.addEventListener('click', toggleDarkGreen);
                     }
                 }
