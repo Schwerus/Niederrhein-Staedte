@@ -22,7 +22,7 @@
         }
     
         /* Setzt feste Breite für die ersten acht Kopfzellen */
-        #eventTable th:nth-child(n+4):nth-child(-n+11) {
+        #eventTable th:nth-child(n+5):nth-child(-n+12) {
             width: 30px;
         }
     
@@ -45,6 +45,7 @@
         <tr>
             <th>Redaktion</th>
             <th>Raus</th>
+            <th>Zum Lesen</th>
             <th>Vorbau</th>
             <th>1</th>
             <th>2</th>
@@ -69,41 +70,38 @@
         
 
 function toggleDarkGreen(event) {
-    const colors = ['yellow', 'red', 'green'];
-    const texts = ['ABC', 'DEF', 'GHI'];
+    const colors = [ 'green', 'violet','white'];
+    
     const target = event.target;
     const currentIndex = colors.indexOf(target.style.backgroundColor);
     const nextIndex = (currentIndex + 1) % colors.length;
 
     target.style.backgroundColor = colors[nextIndex];
-    target.textContent = texts[nextIndex];
+    //target.textContent = texts[nextIndex];
 }
 
 function toggleGreenWhite(event) {
     const colors = ['green','white'];
-    const texts = ['ABC', 'DEF', 'GHI'];
+    //const texts = ['ABC', 'DEF', 'GHI'];
     const target = event.target;
     const currentIndex = colors.indexOf(target.style.backgroundColor);
     const nextIndex = (currentIndex + 1) % colors.length;
 
-    console.log("Aktuelle Farbe:", colors[currentIndex]);
+    //console.log("Aktuelle Farbe:", colors[currentIndex]);
 
     target.style.backgroundColor = colors[nextIndex];
 
-    target.textContent = texts[nextIndex];
+    //target.textContent = texts[nextIndex];
 }
 
 
 function toggleVorbau(event) {
-    const texts = ['AAA', 'BBB', 'CCC'];
+    const texts = ['OK',' '];
     const target = event.target;
     const currentIndex = texts.indexOf(target.textContent);
     const nextIndex = (currentIndex + 1) % texts.length;
 
     console.log("Aktueller Wert:", texts[currentIndex]);
-
-    //target.style.backgroundColor = colors[nextIndex];
-
     target.textContent = texts[nextIndex];
 }
 
@@ -144,12 +142,14 @@ function toggleVorbau(event) {
             }
         }
 
+
+
         // Hinzuf�gen der weiteren Zeilen
         areas.forEach(area => {
             const row = table.insertRow();
             row.insertCell().textContent = area;
 
-            for (let i = 0; i < 12; i++) {
+            for (let i = 0; i < 13; i++) {
                 const cell = row.insertCell();
                 cell.textContent = '';
                 cell.classList.add("clickable"); // Alle Zellen klickbar machen
@@ -160,14 +160,14 @@ function toggleVorbau(event) {
                         cell.addEventListener('click', toggleGreenWhite);
                         cell.textContent = '';
 
-                    } else if (i === 1)  {
+                    } else if (i === 1 || i === 2)  {
                         cell.addEventListener('click', toggleVorbau);
                         
                         
-                    } else if (i === 6 || i === 7)  {
+                    } else if (i === 7 || i === 8)  {
                         // Klick-Event d) f�r "5"
                         cell.addEventListener('click', handleNVclick);
-                    } else if (i === 10 || i === 11) {
+                    } else if (i === 11 || i === 13) {
                         // Klick-Event a) f�r "Fenster" und "Umland"
                         cell.addEventListener('click', toggleDarkGreen);
                     }
@@ -207,12 +207,12 @@ function toggleVorbau(event) {
 
                 else {
                     // Generell
-                    if (i >= 2 && i <= 5) {
+                    if (i >= 3 && i <= 6) {
                         cell.addEventListener('click', toggleDarkGreen);
                         
-                    } else if (i === 6 || i === 7) {
+                    } else if (i === 7 || i === 8) {
                         cell.addEventListener('click', handleNVclick);
-                    } else if (i === 10 || i === 11) {
+                    } else if (i === 11 || i === 12) {
                         cell.addEventListener('click', toggleDarkGreen);
                     }
                 }
