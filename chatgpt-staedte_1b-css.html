@@ -1,195 +1,237 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interaktive Tabelle</title>
-    <style>
-        body{
-        margin: 0 auto;
-    }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid black; padding: 5px; text-align: center; }
-        .dark-green { background-color: darkgreen; color: white; }
-        .violet { background-color: #ee82ee; color: white; }
-        .clickable { cursor: pointer; }
-    </style>
-    <style>
-        /* Stellen Sie sicher, dass die Tabelle layoutbedingt Platz für feste Breiten hat */
-        #eventTable {
+<html lang="de">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Interaktive Tabelle</title>
+      <style>
+         body {
+            margin: 0 auto;
+         }
+         table {
+            width: 100%;
+            border-collapse: collapse;
+         }
+         th,
+         td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+         }
+         .dark-green {
+            background-color: darkgreen;
+            color: white;
+         }
+         .violet {
+            background-color: #ee82ee;
+            color: white;
+         }
+         .clickable {
+            cursor: pointer;
+         }
+      </style>
+      <style>
+         /* Stellen Sie sicher, dass die Tabelle layoutbedingt Platz für feste Breiten hat */
+         #eventTable {
             table-layout: fixed;
-            width: 1000px /* Beispiel für eine Gesamtbreite, kann nach Bedarf angepasst werden */
-        }
-    
-        /* Setzt feste Breite für die ersten acht Kopfzellen */
-        #eventTable th:nth-child(n+5):nth-child(-n+12) {
+            width: 1000px; /* Beispiel für eine Gesamtbreite, kann nach Bedarf angepasst werden */
+         }
+
+         /* Setzt feste Breite für die ersten acht Kopfzellen */
+         #eventTable th:nth-child(n + 5):nth-child(-n + 12) {
             width: 30px;
-        }
-    
-        /* Optional: Setzt feste Breite für die ersten acht Zellen in jeder weiteren Zeile 
+         }
+         #eventTable td:nth-child(n + 9):nth-child(-n + 14) {
+            color: rgb(138, 136, 136);
+         }
+
+         /* Optional: Setzt feste Breite für die ersten acht Zellen in jeder weiteren Zeile 
         #eventTable td:nth-child(-n+8) {
             width: 20px;
         }
         */
-        th, td {
-    border: 4px solid #dddddd;
-    border-style:solid;
-    text-align: left;
-    padding: 8px;
-  }
-    </style>
-</head>
-<body>
-    <center>
-    <table id="eventTable">
-        <tr>
-            <th>Redaktion</th>
-            <th>Raus</th>
-            <th>Zum Lesen</th>
-            <th>Vorbau</th>
-            <th>1</th>
-            <th>2</th>
-            <th>3</th>
-            <th>4</th>
-            <th>5</th>
-            <th>6</th>
-            <th>7</th>
-            <th>8</th>
-            <th>Fenster</th>
-            <th>Umland</th>
-        </tr>
-        <!-- Weitere Zeilen werden per JavaScript erzeugt -->
-    </table>
-</center>
+         th,
+         td {
+            border: 4px solid #dddddd;
+            border-style: solid;
+            text-align: center;
+            padding: 8px;
+         }
+      </style>
+   </head>
+   <body>
+      <center>
+         <table id="eventTable">
+            <tr>
+               <th>Redaktion</th>
+               <th>Raus</th>
+               <th>Zum Lesen</th>
+               <th>Vorbau</th>
+               <th>1</th>
+               <th>2</th>
+               <th>3</th>
+               <th>4</th>
+               <th>5</th>
+               <th>6</th>
+               <th>7</th>
+               <th>8</th>
+               <th></th>
+               <th></th>
+            </tr>
+            <!-- Weitere Zeilen werden per JavaScript erzeugt -->
+         </table>
+      </center>
 
+      <script>
+         const table = document.getElementById("eventTable");
+         const areas = [
+            "Moers",
+            "Rheinberg",
+            "Dinslaken",
+            "Wesel",
+            "Issel",
+            "Düsseldorf",
+            "DDorf Sport",
+         ];
 
-    <script>
-        const table = document.getElementById('eventTable');
-        const areas = ['Moers', 'Rheinberg', 'Dinslaken', 'Wesel', 'Issel', 'Düsseldorf', 'DDorf Sport'];
+         function toggleDarkGreen(event) {
+            const colors = ["green", "violet", "white"];
 
-        
+            const target = event.target;
+            const currentIndex = colors.indexOf(target.style.backgroundColor);
+            const nextIndex = (currentIndex + 1) % colors.length;
 
-function toggleDarkGreen(event) {
-    const colors = [ 'green', 'violet','white'];
-    
-    const target = event.target;
-    const currentIndex = colors.indexOf(target.style.backgroundColor);
-    const nextIndex = (currentIndex + 1) % colors.length;
+            target.style.backgroundColor = colors[nextIndex];
+            //target.textContent = texts[nextIndex];
+         }
 
-    target.style.backgroundColor = colors[nextIndex];
-    //target.textContent = texts[nextIndex];
-}
+         function toggleGreenWhite(event) {
+            const colors = ["green", "white"];
+            //const texts = ['ABC', 'DEF', 'GHI'];
+            const target = event.target;
+            const currentIndex = colors.indexOf(target.style.backgroundColor);
+            const nextIndex = (currentIndex + 1) % colors.length;
 
-function toggleGreenWhite(event) {
-    const colors = ['green','white'];
-    //const texts = ['ABC', 'DEF', 'GHI'];
-    const target = event.target;
-    const currentIndex = colors.indexOf(target.style.backgroundColor);
-    const nextIndex = (currentIndex + 1) % colors.length;
+            //console.log("Aktuelle Farbe:", colors[currentIndex]);
 
-    //console.log("Aktuelle Farbe:", colors[currentIndex]);
+            target.style.backgroundColor = colors[nextIndex];
 
-    target.style.backgroundColor = colors[nextIndex];
+            //target.textContent = texts[nextIndex];
+         }
 
-    //target.textContent = texts[nextIndex];
-}
+         function toggleVorbau(event) {
+            const texts = ["OK", " "];
+            const target = event.target;
+            const currentIndex = texts.indexOf(target.textContent);
+            const nextIndex = (currentIndex + 1) % texts.length;
 
+            console.log("Aktueller Wert:", texts[currentIndex]);
+            target.textContent = texts[nextIndex];
+         }
 
-function toggleVorbau(event) {
-    const texts = ['OK',' '];
-    const target = event.target;
-    const currentIndex = texts.indexOf(target.textContent);
-    const nextIndex = (currentIndex + 1) % texts.length;
-
-    console.log("Aktueller Wert:", texts[currentIndex]);
-    target.textContent = texts[nextIndex];
-}
-
-    
-        function handleNVclick(event) {
+         function handleNVclick(event) {
             let cell = event.target;
-            let isGreen = cell.classList.contains('dark-green');
-            let isViolet = cell.classList.contains('red');
-            if (cell.textContent === 'NV') {
-                cell.textContent = '';
-                cell.classList.add('dark-green');
+            let isGreen = cell.classList.contains("dark-green");
+            let isViolet = cell.classList.contains("red");
+            if (cell.textContent === "NV") {
+               cell.textContent = "";
+               cell.classList.add("dark-green");
             } else if (isGreen) {
-                cell.classList.remove('dark-green');
-                cell.classList.add('violet');
-                cell.textContent = '';
+               cell.classList.remove("dark-green");
+               cell.classList.add("violet");
+               cell.textContent = "";
             } else {
-                cell.classList.remove('violet');
-                cell.textContent = 'NV';
+               cell.classList.remove("violet");
+               cell.textContent = "NV";
             }
-        }
+         }
 
-
-
-        // Hinzuf�gen der weiteren Zeilen
-        areas.forEach(area => {
+         // Hinzuf�gen der weiteren Zeilen
+         areas.forEach((area) => {
             const row = table.insertRow();
             row.insertCell().textContent = area;
 
             for (let i = 0; i < 13; i++) {
-                const cell = row.insertCell();
-                cell.textContent = '';
-                cell.classList.add("clickable"); // Alle Zellen klickbar machen
+               const cell = row.insertCell();
+               cell.textContent = "";
+               cell.classList.add("clickable"); // Alle Zellen klickbar machen
 
-                // Definiere die Klick-Events f�r alle anderen Zeilen au�er "Rheinberg"
-                
-                    if (i === 0) {
-                        cell.addEventListener('click', toggleGreenWhite);
-                        cell.textContent = '';
+               if (area === "Issel") {
+                  if (i === 0) {
+                     cell.addEventListener("click", toggleGreenWhite);
+                     cell.textContent = "";
+                  } else if (i === 1 || i === 2) {
+                     cell.addEventListener("click", toggleVorbau);
+                  } else if (i <= 6 && i >= 3) {
+                     // Klick-Event a) f�r "1"-"4", "Fenster" und "Umland"
+                     cell.addEventListener("click", toggleDarkGreen);
+                  } else if (i === 9 || i === 10) {
+                     // Klick-Event d) f�r "5"
+                     cell.addEventListener("click", handleNVclick);
+                  } else if (i === 11) {
+                     // Klick-Event a) f�r "Fenster" und "Umland"
+                     cell.addEventListener("click", toggleDarkGreen);
+                     cell.textContent = "Fenster";
+                  } else if (i === 12) {
+                     cell.textContent = "-";
+                  }
 
-                    } else if (i === 1 || i === 2)  {
-                        cell.addEventListener('click', toggleVorbau);
-                        
-                    }else if (i >= 3 && i <= 6) {
-                        cell.addEventListener('click', toggleDarkGreen);
-                        
-                    } else if (i === 7 || i === 8)  {
-                        // Klick-Event d) f�r "5"
-                        cell.addEventListener('click', handleNVclick);
-                    } else if (i === 11 || i === 13) {
-                        // Klick-Event a) f�r "Fenster" und "Umland"
-                        cell.addEventListener('click', toggleDarkGreen);
-                    }
-                    
-                 
-                
-                if (area === 'Issel') {
-                    if (i === 0) {
-                        cell.addEventListener('click', toggleGreenWhite);
-                        cell.textContent = '';
-                    } else if (i === 1 || i === 2)  {
-                        cell.addEventListener('click', toggleVorbau);
-                        
-                    }else if (i <= 6) {
-                        // Klick-Event a) f�r "1"-"4", "Fenster" und "Umland"
-                        cell.addEventListener('click', toggleDarkGreen);
-                    
-                    } else if (i === 9 || i === 10)  {
-                        // Klick-Event d) f�r "5"
-                        cell.addEventListener('click', handleNVclick);
-                    } else if (i === 11 ) {
-                        // Klick-Event a) f�r "Fenster" und "Umland"
-                        cell.addEventListener('click', toggleDarkGreen);
-                    }
-                    
-                    // F�r die erste und zweite Spalte (Raus und Vorbau) sind Events
-                    // f�r alle Zeilen identisch
-                                      
-                } 
+                  // F�r die erste und zweite Spalte (Raus und Vorbau) sind Events
+                  // f�r alle Zeilen identisch
+               } else if (area === "Düsseldorf") {
+                  if (i === 0) {
+                     cell.addEventListener("click", toggleGreenWhite);
+                     cell.textContent = "";
+                  } else if (i === 1 || i === 2) {
+                     cell.addEventListener("click", toggleVorbau);
+                  } else if (i >= 3 && i <= 8) {
+                     // Klick-Event a) f�r "1"-"4", "Fenster" und "Umland"
+                     cell.addEventListener("click", toggleDarkGreen);
+                  } else if (i === 9 || i === 10) {
+                     // Klick-Event d) f�r "5"
+                     cell.addEventListener("click", handleNVclick);
+                  } else if (i === 11) {
+                     // Klick-Event a) f�r "Fenster" und "Umland"
+                     cell.addEventListener("click", toggleDarkGreen);
+                     cell.textContent = "NDFF_1";
+                  } else if (i === 12) {
+                     cell.addEventListener("click", toggleDarkGreen);
+                     cell.textContent = "NDFF_2";
+                  }
 
-                else {
-                    // Generell
-                    if (i === 11 || i === 12) {
-                        cell.addEventListener('click', toggleDarkGreen);
-                    }
-                }
-                
+                  // F�r die erste und zweite Spalte (Raus und Vorbau) sind Events
+                  // f�r alle Zeilen identisch
+               }
+
+               // Definiere die Klick-Events f�r alle anderen Zeilen au�er "Rheinberg"
+               else if (i === 0) {
+                  cell.addEventListener("click", toggleGreenWhite);
+                  cell.textContent = "";
+               } else if (i === 1 || i === 2) {
+                  cell.addEventListener("click", toggleVorbau);
+               } else if (i >= 3 && i <= 6) {
+                  cell.addEventListener("click", toggleDarkGreen);
+               } else if (i === 7 || i === 8) {
+                  // Klick-Event d) f�r "5"
+                  cell.addEventListener("click", handleNVclick);
+               } else if (i === 11) {
+                  // Klick-Event a) f�r "Fenster" und "Umland"
+                  cell.addEventListener("click", toggleDarkGreen);
+                  cell.textContent = "Fenster";
+               } else if (i === 12) {
+                  cell.addEventListener("click", toggleDarkGreen);
+                  cell.textContent = "Umland";
+               }
+               // Hier dann DDorf Sport einfügen mit eigenem Eventhandler, der nru 1 auf grün und 2 auf OK setzt, sowie 1-3 auf toggle Green oder NV... wird noch spannend
+               /*else {
+                  // Generell
+                  if (i === 11 || i === 12) {
+                     cell.addEventListener("click", toggleDarkGreen);
+                  }
+               }
+               */
             }
-        });
-    </script>
-</body>
+         });
+      </script>
+   </body>
 </html>
