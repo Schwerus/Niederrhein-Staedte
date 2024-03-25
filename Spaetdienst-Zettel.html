@@ -7,6 +7,8 @@
       <style>
          body {
             margin: 0 auto;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 0.9em;
          }
          table {
             width: 100%;
@@ -32,6 +34,10 @@
 
          .keinKlick {
             cursor: default;
+         }
+
+         .Farbwechsel {
+            color: rgb(12, 12, 12);
          }
       </style>
       <style>
@@ -65,7 +71,11 @@
    </head>
    <body>
       <center>
-         <table id="eventTable">
+
+        <h2>Spätdienst-"Zettel"</h2>
+        <br>
+        <br>
+                 <table id="eventTable">
             <tr>
                <th>Redaktion</th>
                <th>Raus</th>
@@ -100,12 +110,18 @@
 
          function toggleDarkGreen(event) {
             const colors = ["green", "violet", "white"];
-
+            const schriftfarbe = ["black", "white", "grey"];
             const target = event.target;
             const currentIndex = colors.indexOf(target.style.backgroundColor);
+
             const nextIndex = (currentIndex + 1) % colors.length;
 
             target.style.backgroundColor = colors[nextIndex];
+            target.style.color = schriftfarbe[nextIndex];
+            //target.style.color = (target.style.color === "black") ? "white" : "black";
+
+            //target.classList.toggle("Farbwechsel");
+            //target.style.classList.add("Farbwechsel");
             //target.textContent = texts[nextIndex];
          }
 
@@ -180,8 +196,7 @@
                      cell.textContent = "-";
                   }
 
-                  // F�r die erste und zweite Spalte (Raus und Vorbau) sind Events
-                  // f�r alle Zeilen identisch
+                  // DÜSSELDORF
                } else if (area === "Düsseldorf") {
                   if (i === 0) {
                      cell.addEventListener("click", toggleGreenWhite);
@@ -202,12 +217,9 @@
                      cell.addEventListener("click", toggleDarkGreen);
                      cell.textContent = "NDFF_2";
                   }
-
-                  // F�r die erste und zweite Spalte (Raus und Vorbau) sind Events
-                  // f�r alle Zeilen identisch
                }
 
-               // Definiere die Klick-Events f�r alle anderen Zeilen au�er "Rheinberg"
+               // NICHT!!! DDORF SPORT
                else if (area != "DDorf Sport") {
                   if (i === 0) {
                      cell.addEventListener("click", toggleGreenWhite);
@@ -235,7 +247,7 @@
                      cell.addEventListener("click", toggleGreenWhite);
                      cell.textContent = "";
                   } else if (i === 1) {
-                    cell.classList.add("keinKlick");
+                     cell.classList.add("keinKlick");
                   } else if (i === 2) {
                      cell.addEventListener("click", toggleVorbau);
                   } else if (i === 3) {
