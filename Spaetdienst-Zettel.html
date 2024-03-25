@@ -48,13 +48,24 @@
          }
 
          /* Setzt feste Breite für die ersten acht Kopfzellen */
+         #eventTable th:nth-child(n + 1) {
+            width: 95px;
+         }
+
+         #eventTable th:nth-child(n + 2):nth-child(-n + 4) {
+            width: 60px;
+         }
+
          #eventTable th:nth-child(n + 5):nth-child(-n + 12) {
             width: 30px;
          }
          #eventTable td:nth-child(n + 9):nth-child(-n + 14) {
             color: rgb(138, 136, 136);
          }
-
+         #eventTable th:nth-child(n + 13):nth-child(-n + 14) {
+            width: 50px;
+         }
+         
          /* Optional: Setzt feste Breite für die ersten acht Zellen in jeder weiteren Zeile 
         #eventTable td:nth-child(-n+8) {
             width: 20px;
@@ -71,11 +82,10 @@
    </head>
    <body>
       <center>
-
-        <h2>Spätdienst-"Zettel"</h2>
-        <br>
-        <br>
-                 <table id="eventTable">
+         <h2>Spätdienst-"Zettel"</h2>
+         <br />
+         <br />
+         <table id="eventTable">
             <tr>
                <th>Redaktion</th>
                <th>Raus</th>
@@ -194,6 +204,7 @@
                      cell.textContent = "Fenster";
                   } else if (i === 12) {
                      cell.textContent = "-";
+                     cell.classList.add("keinKlick");
                   }
 
                   // DÜSSELDORF
@@ -229,10 +240,10 @@
                   } else if (i >= 3 && i <= 6) {
                      cell.addEventListener("click", toggleDarkGreen);
                   } else if (i === 7 || i === 8) {
-                     // Klick-Event d) f�r "5"
                      cell.addEventListener("click", handleNVclick);
+                  } else if (i === 9 || i === 10) {
+                     cell.classList.add("keinKlick");
                   } else if (i === 11) {
-                     // Klick-Event a) f�r "Fenster" und "Umland"
                      cell.addEventListener("click", toggleDarkGreen);
                      cell.textContent = "Fenster";
                   } else if (i === 12) {
