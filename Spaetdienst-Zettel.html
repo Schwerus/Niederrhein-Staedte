@@ -162,7 +162,7 @@
          function handleNVclick(event) {
             let cell = event.target;
             let isGreen = cell.classList.contains("dark-green");
-            let isViolet = cell.classList.contains("red");
+            let isViolet = cell.classList.contains("violet");
             if (cell.textContent === "NV") {
                cell.textContent = "";
                cell.classList.add("dark-green");
@@ -170,10 +170,15 @@
                cell.classList.remove("dark-green");
                cell.classList.add("violet");
                cell.textContent = "";
-            } else {
+            } else if (isViolet) {
+               cell.classList.remove("violet");
+               //cell.classList.add("violet");
+               cell.textContent = "";
+            }else {
                cell.classList.remove("violet");
                cell.textContent = "NV";
             }
+            console.log(cell); // Ausgabe des Inhalts von "cell"
          }
 
          // Hinzuf�gen der weiteren Zeilen
