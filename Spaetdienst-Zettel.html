@@ -126,6 +126,18 @@
             target.style.color = schriftfarbe[nextIndex];
          }
 
+         function toggleDarkGreenIssel(event) {
+            const colors = ["green", "blue", "violet", "white"];
+            const schriftfarbe = ["black", "black", "white", "grey"];
+            const target = event.target;
+            const currentIndex = colors.indexOf(target.style.backgroundColor);
+
+            const nextIndex = (currentIndex + 1) % colors.length;
+
+            target.style.backgroundColor = colors[nextIndex];
+            target.style.color = schriftfarbe[nextIndex];
+         }         
+
          function UmlandEvent(event) {
             const colors = ["green", "violet", "white", "white"];
             const schriftfarbe = ["black", "white", "grey", "grey"];
@@ -202,7 +214,7 @@
                   } else if (i === 1 || i === 2) {
                      cell.addEventListener("click", toggleVorbau);
                   } else if (i >= 3 && i <= 8) {
-                     cell.addEventListener("click", toggleDarkGreen);
+                     cell.addEventListener("click", toggleDarkGreenIssel);
                   } else if (i === 9 || i === 10) {
                      cell.addEventListener("click", handleNVclick);
                   } else if (i === 11) {
