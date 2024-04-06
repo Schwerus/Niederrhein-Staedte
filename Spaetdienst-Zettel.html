@@ -29,6 +29,11 @@
             background-color: #ee82ee;
             color: white;
          }
+
+         .blue {
+            background-color: #80c8e9;
+            color: white;
+         }
          .clickable {
             cursor: pointer;
          }
@@ -125,7 +130,7 @@
             target.style.backgroundColor = colors[nextIndex];
             target.style.color = schriftfarbe[nextIndex];
          }
-
+         // Für Seiten 1-6
          function toggleDarkGreenIssel(event) {
             const colors = ["green", "blue", "violet", "white"];
             const schriftfarbe = ["black", "black", "white", "grey"];
@@ -136,7 +141,7 @@
 
             target.style.backgroundColor = colors[nextIndex];
             target.style.color = schriftfarbe[nextIndex];
-         }         
+         }
 
          function UmlandEvent(event) {
             const colors = ["green", "violet", "white", "white"];
@@ -196,6 +201,33 @@
             }
             console.log(cell); // Ausgabe des Inhalts von "cell"
          }
+// Für Seiten 7-8 in Issel
+         function handleNVclickIssel(event) {
+            let cell = event.target;
+            let isGreen = cell.classList.contains("dark-green");
+            let isViolet = cell.classList.contains("violet");
+            let isBlue = cell.classList.contains("blue");
+            if (cell.textContent === "NV") {
+               cell.textContent = "";
+               cell.classList.add("dark-green");
+            } else if (isGreen) {
+               cell.classList.remove("dark-green");
+               cell.classList.add("blue");
+               cell.textContent = "";
+            } else if (isBlue) {
+               cell.classList.remove("blue");
+               cell.classList.add("violet");
+               cell.textContent = "";               
+            } else if (isViolet) {
+               cell.classList.remove("violet");
+               //cell.classList.add("violet");
+               cell.textContent = "";
+            } else {
+               cell.classList.remove("violet");
+               cell.textContent = "NV";
+            }
+            console.log(cell); // Ausgabe des Inhalts von "cell"
+         }
 
          // Hinzuf�gen der weiteren Zeilen
          areas.forEach((area) => {
@@ -216,7 +248,7 @@
                   } else if (i >= 3 && i <= 8) {
                      cell.addEventListener("click", toggleDarkGreenIssel);
                   } else if (i === 9 || i === 10) {
-                     cell.addEventListener("click", handleNVclick);
+                     cell.addEventListener("click", handleNVclickIssel);
                   } else if (i === 11) {
                      cell.addEventListener("click", toggleDarkGreen);
                      cell.textContent = "Fenster";
@@ -258,7 +290,7 @@
                      cell.textContent = "-";
                      cell.classList.add("keinKlick");
                   }
-/*
+                  /*
                   // Rheinberg
                } else if (area === "Rheinberg" && i === 12) {
                   cell.addEventListener("click", UmlandEvent);
