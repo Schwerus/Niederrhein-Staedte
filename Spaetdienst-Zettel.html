@@ -117,6 +117,7 @@
             "Düsseldorf",
             "DDorf Sport",
             "Niederrhein",
+            "Kreisseite AAA"
          ];
 
          function toggleDarkGreen(event) {
@@ -142,6 +143,11 @@
             target.style.backgroundColor = colors[nextIndex];
             target.style.color = schriftfarbe[nextIndex];
          }
+
+         /*
+         Um den gewaltigen FUTTSACK zu umgehen, der auftaucht, wenn man ZWEIMAL "white" als Farbe nimmt(es findet dann nämlich kein Toggle zum Anfang statt, sodass die Schleife nach EINEM MAL stehen bleibt), wurde eine weitere Variable "Nummern" hinzugefügt, an der sich die Abarbeitung der Schleife jetzt orientieren sollte.
+         Das Konstrukt target.add ist nur ein Hilfswerkzeug - für o.g. Workaround.
+         */
 
          function UmlandEvent(event) {
             const Nummern = [1, 2, 3, 4];
@@ -284,8 +290,8 @@
 
                   // Niederrhein
                } else if (area === "Niederrhein") {
-                  if (i === 0) {
-                     cell.addEventListener("click", toggleGreenWhite);
+                  if (i === 1) {
+                     cell.addEventListener("click", toggleVorbau);
                      cell.textContent = "";
                   } else if (i === 1 || i === 2) {
                      cell.addEventListener("click", toggleVorbau);
@@ -293,13 +299,17 @@
                      cell.textContent = "-";
                      cell.classList.add("keinKlick");
                   }
-                  /*
-                  // Rheinberg
-               } else if (area === "Rheinberg" && i === 12) {
-                  cell.addEventListener("click", UmlandEvent);
-                  cell.textContent = "Umland";
-                  //cell.classList.add("keinKlick");
-*/
+
+                } else if (area === "Kreisseite AAA") {
+                  if (i === 1) {
+                     cell.addEventListener("click", toggleVorbau);
+                     cell.textContent = "";
+                  }
+                  else if (i >= 2 && i <= 12 || i < 1) {
+                     cell.textContent = "-";
+                     cell.classList.add("keinKlick");
+                  }
+
                   // NICHT!!! DDORF SPORT
                } else if (area != "DDorf Sport") {
                   if (i === 0) {
