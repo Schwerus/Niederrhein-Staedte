@@ -31,7 +31,7 @@
          }
 
          .blue {
-            background-color: #80c8e9;
+            background-color: #1f91ff;
             color: white;
          }
          .clickable {
@@ -121,27 +121,31 @@
          ];
 
          function toggleDarkGreen(event) {
+            const Nummern = [1, 2, 3];
             const colors = ["green", "#fe01f4", "white"];
             const schriftfarbe = ["black", "white", "grey"];
             const target = event.target;
-            const currentIndex = colors.indexOf(target.style.backgroundColor);
+            const currentIndex = Nummern.indexOf(target.add);
 
-            const nextIndex = (currentIndex + 1) % colors.length;
+            const nextIndex = (currentIndex + 1) % Nummern.length;
 
             target.style.backgroundColor = colors[nextIndex];
             target.style.color = schriftfarbe[nextIndex];
+            target.add = Nummern[nextIndex];
          }
          // Für Seiten 1-6
          function toggleDarkGreenIssel(event) {
-            const colors = ["green", "blue", "#fe01f4", "white"];
+            const Nummern = [1, 2, 3, 4];
+            const colors = ["green", "#1f91ff", "#fe01f4", "white"];
             const schriftfarbe = ["black", "black", "white", "grey"];
             const target = event.target;
-            const currentIndex = colors.indexOf(target.style.backgroundColor);
+            const currentIndex = Nummern.indexOf(target.add);
 
-            const nextIndex = (currentIndex + 1) % colors.length;
+            const nextIndex = (currentIndex + 1) % Nummern.length;
 
             target.style.backgroundColor = colors[nextIndex];
             target.style.color = schriftfarbe[nextIndex];
+            target.add = Nummern[nextIndex];
          }
 
          /*
