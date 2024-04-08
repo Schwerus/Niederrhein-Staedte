@@ -144,16 +144,19 @@
          }
 
          function UmlandEvent(event) {
+            const Nummern = [1, 2, 3, 4];
             const colors = ["green", "violet", "white", "white"];
             const schriftfarbe = ["black", "white", "grey", "grey"];
             const texts = ["Umland", "Umland", "NV", "Umland"];
-            const target = event.target;
-            const currentIndex = colors.indexOf(target.style.backgroundColor);
 
-            const nextIndex = (currentIndex + 1) % colors.length;
+            const target = event.target;
+            const currentIndex = Nummern.indexOf(target.add);
+
+            const nextIndex = (currentIndex + 1) % Nummern.length;
             target.textContent = texts[nextIndex];
             target.style.backgroundColor = colors[nextIndex];
             target.style.color = schriftfarbe[nextIndex];
+            target.add = Nummern[nextIndex];
          }
 
          function toggleGreenWhite(event) {
@@ -201,7 +204,7 @@
             }
             console.log(cell); // Ausgabe des Inhalts von "cell"
          }
-// Für Seiten 7-8 in Issel
+         // Für Seiten 7-8 in Issel
          function handleNVclickIssel(event) {
             let cell = event.target;
             let isGreen = cell.classList.contains("dark-green");
@@ -217,7 +220,7 @@
             } else if (isBlue) {
                cell.classList.remove("blue");
                cell.classList.add("violet");
-               cell.textContent = "";               
+               cell.textContent = "";
             } else if (isViolet) {
                cell.classList.remove("violet");
                //cell.classList.add("violet");
