@@ -22,11 +22,11 @@
             text-align: center;
          }
          .dark-green {
-            background-color: darkgreen;
+            background-color: #018101;
             color: white;
          }
          .violet {
-            background-color: #ee82ee;
+            background-color: #fe01f4;
             color: white;
          }
 
@@ -120,7 +120,7 @@
          ];
 
          function toggleDarkGreen(event) {
-            const colors = ["green", "violet", "white"];
+            const colors = ["green", "#fe01f4", "white"];
             const schriftfarbe = ["black", "white", "grey"];
             const target = event.target;
             const currentIndex = colors.indexOf(target.style.backgroundColor);
@@ -132,7 +132,7 @@
          }
          // Für Seiten 1-6
          function toggleDarkGreenIssel(event) {
-            const colors = ["green", "blue", "violet", "white"];
+            const colors = ["green", "blue", "#fe01f4", "white"];
             const schriftfarbe = ["black", "black", "white", "grey"];
             const target = event.target;
             const currentIndex = colors.indexOf(target.style.backgroundColor);
@@ -145,9 +145,9 @@
 
          function UmlandEvent(event) {
             const Nummern = [1, 2, 3, 4];
-            const colors = ["green", "violet", "white", "white"];
-            const schriftfarbe = ["black", "white", "grey", "grey"];
-            const texts = ["Umland", "Umland", "NV", "Umland"];
+            const colors = ["white", "#018101", "#fe01f4", "white"];
+            const schriftfarbe = ["grey", "black", "white", "grey" ];
+            const texts = ["NV", "Umland", "Umland", "Umland"];
 
             const target = event.target;
             const currentIndex = Nummern.indexOf(target.add);
