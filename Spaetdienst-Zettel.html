@@ -45,6 +45,16 @@
          .Farbwechsel {
             color: rgb(12, 12, 12);
          }
+
+         .NRZ {
+            color: white;
+            background-color: green;
+            font-size: 25px;
+            font-weight: bold;
+            padding: 5px;
+         }
+
+        
       </style>
       <style>
          #eventTable {
@@ -85,10 +95,13 @@
    </head>
    <body>
       <center>
-         <h2>Spätdienst-"Zettel"</h2>
-         <br />
-         <br />
-         <table id="eventTable">
+
+         <table id="eventTable">         
+            <div class="NRZ">NRZ Spätdienst-"Zettel"</div>
+            <br />
+            <br />
+            <br>
+            <br>
             <tr>
                <th>Redaktion</th>
                <th>Komplett raus</th>
@@ -278,9 +291,9 @@
                   if (i === 0) {
                      cell.addEventListener("click", toggleGreenWhite);
                      cell.textContent = "";
-                  } else if (i === 1 || i === 2) {
+                  } else if ( i === 2) {
                      cell.addEventListener("click", toggleVorbau);
-                  } else if (i >= 3 && i <= 8) {
+                  } else if (i === 1 || i >= 3 && i <= 8) {
                      // Klick-Event a) f�r "1"-"4", "Fenster" und "Umland"
                      cell.addEventListener("click", toggleDarkGreen);
                   } else if (i === 9 || i === 10) {
@@ -297,8 +310,8 @@
 
                   // Niederrhein
                } else if (area === "Niederrhein") {
-                  if (i === 1) {
-                     cell.addEventListener("click", toggleVorbau);
+                  if (i === 0) {
+                     cell.addEventListener("click", toggleGreenWhite);
                      cell.textContent = "";
                   } else if (i === 1 || i === 2) {
                      cell.addEventListener("click", toggleVorbau);
