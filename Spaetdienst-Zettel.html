@@ -132,7 +132,7 @@
             "Issel",
             "Düsseldorf",
             "DDorf Sport",
-            "Niederrhein",
+            "Niederrhein / Holland",
             "Kreisseite AAA"
          ];
 
@@ -291,9 +291,17 @@
                   if (i === 0) {
                      cell.addEventListener("click", toggleGreenWhite);
                      cell.textContent = "";
-                  } else if ( i === 2) {
+                  } 
+                  
+                  else if (i === 1) {
+                     cell.textContent = "-";
+                     cell.classList.add("keinKlick");
+                  }
+                  
+                  
+                  else if ( i === 2 ) {
                      cell.addEventListener("click", toggleVorbau);
-                  } else if (i === 1 || i >= 3 && i <= 8) {
+                  } else if (i >= 3 && i <= 8) {
                      // Klick-Event a) f�r "1"-"4", "Fenster" und "Umland"
                      cell.addEventListener("click", toggleDarkGreen);
                   } else if (i === 9 || i === 10) {
@@ -309,7 +317,7 @@
                   }
 
                   // Niederrhein
-               } else if (area === "Niederrhein") {
+               } else if (area === "Niederrhein / Holland") {
                   if (i === 0) {
                      cell.addEventListener("click", toggleGreenWhite);
                      cell.textContent = "";
@@ -360,6 +368,7 @@
                      cell.textContent = "";
                   } else if (i === 1) {
                      cell.classList.add("keinKlick");
+                     cell.textContent = "-";
                   } else if (i === 2) {
                      cell.addEventListener("click", toggleVorbau);
                   } else if (i === 3) {
