@@ -4,7 +4,7 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Interaktive Tabelle</title>
+      <title>NRZ Spätdienst-"Zettel"</title>
       <style>
          body {
             margin: 0 auto;
@@ -292,14 +292,7 @@
                      cell.addEventListener("click", toggleGreenWhite);
                      cell.textContent = "";
                   } 
-                  
-                  else if (i === 1) {
-                     cell.textContent = "-";
-                     cell.classList.add("keinKlick");
-                  }
-                  
-                  
-                  else if ( i === 2 ) {
+                  else if ( i === 1 || i === 2 ) {
                      cell.addEventListener("click", toggleVorbau);
                   } else if (i >= 3 && i <= 8) {
                      // Klick-Event a) f�r "1"-"4", "Fenster" und "Umland"
